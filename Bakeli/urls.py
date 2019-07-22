@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
+from django.urls import path
 from django.contrib import admin
 from rest_framework import routers
 from Bakeli.views import *
@@ -21,11 +22,12 @@ from Bakeli.views import *
 
 router = routers.DefaultRouter()
 router.register(r'client', ClientsViewSet)
+router.register(r'lunette', LunetteViewSet)
 router.register(r'commande', CommandeViewSet)
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
-     #path('', include('Gestcom.urls')),
-     #path(r'^api-auth/', include('rest_framework.urls')),
+     path('admin/', admin.site.urls),
+     path('', include('Gestcom.urls')),
+     path(r'^api-auth/', include('rest_framework.urls')),
      url(r'^api/', include(router.urls)),
 ]
